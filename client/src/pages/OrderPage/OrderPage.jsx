@@ -22,6 +22,12 @@ export default function OrderPage() {
       .then((response) => {
         setProducts(response.data.data);
         setError({ ...error, fetch_product: "" });
+        let qty =
+          response.data.data.length &&
+          response.data.data.map((item) => ({
+            [item.itemName]: 0,
+          }));
+        setQuantity(qty);
       })
       .catch((errorResponse) =>
         setError({ ...error, fetch_product: errorResponse })
