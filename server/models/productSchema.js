@@ -8,7 +8,7 @@ let orderedProductSchema = new mongoose.Schema(
       unique: true,
       enum: ["Shirt", "Pant", "T-Shirt", "Trouser"],
     },
-    image: { type: String, required: true },
+    // image: { type: String, required: true },
     washDetails: [
       {
         operationName: {

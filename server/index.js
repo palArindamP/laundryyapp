@@ -3,11 +3,12 @@ require("dotenv").config();
 const db = require("./db/connection");
 const express = require("express");
 const router = require("./routes");
+const cors = require("cors");
 
 const app = express();
 
 //parser
-// app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 
 

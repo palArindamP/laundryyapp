@@ -19,6 +19,7 @@ const RegisterFormComponent = () => {
   const cityChangeHandler = (e) => {
     setDistrict(e.target.value);
   };
+  
   const stateChangeHandler = (e) => {
     setState(e.target.value);
 
@@ -177,7 +178,7 @@ const RegisterFormComponent = () => {
             <div id="field1">
               <label>
                 <input placeholder=" " type="text" value={name} required onChange={nameChange} />
-                <span>Name</span>
+                <span>Name </span>
                 <span style={{ marginTop: "30px", marginLeft: "180px", color: "red", fontWeight: "bold", visibility: nameError }}>This field is required.Name should be at least 3 chars long.</span>
               </label>
             </div>
@@ -254,13 +255,13 @@ const RegisterFormComponent = () => {
               </label>
             </div>
 
-            <div id="field9">
+            {/* <div id="field9">
               <label>
                 <input placeholder=" " type="text" value={cpassword} required onChange={cPasswordChange} />
                 <span>Confirm Password</span>
                 <span style={{ marginTop: "30px", marginLeft: "180px", color: "red", fontWeight: "bold", visibility: cpasswordError }}>Password doesn't match</span>
               </label>
-            </div>
+            </div> */}
             <div id="tc">
               <input type="checkbox" onClick={checked} />
               <h5>I agree to terms and conditions, receiving marketing and promotional materials</h5>

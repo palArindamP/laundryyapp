@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage/LoginPage";
 
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
-// import HomePage from "../pages/HomePage/HomePage";
-// import CreateOrderButtonPage from "../pages/createOrderButtonPage/createOrderButtonPage";
-import CreateOrderPage from "../pages/createOrderPage/createOrderPage";
+import OrderPage from "../pages/OrderPage/OrderPage";
 
 export default function MyRouter() {
   return (
@@ -15,7 +13,7 @@ export default function MyRouter() {
        <Route path="register" element={<RegisterPage />} />
         {/* <Route path="home" element={<HomePage />}> */}
           {/* <Route index element={<CreateOrderButtonPage />} /> */}
-          <Route path="create-order" element={<CreateOrderPage />} /> 
+          <Route path="make-order" element={<OrderPage/>}/>
         
       </Routes>
     </Router>

@@ -3,10 +3,7 @@ const mongoose = require("mongoose");
 const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
 const { uuid } = require('uuidv4');
-// const mongoose = require("mongoose");
-// const User = require("../models/userSchema");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -18,16 +15,24 @@ router.use(express.json());
 router.post("/register", async (req, res) => {
   const { name, email, password, mobile, state, district, address, pincode } = req.body;
 
-  if (!name || !email || !password || !mobile || !state || !district || !address || !pincode ) {
-    return res.status(422).json({ error: "Please fill all the fields." })
+  if (!name || !email || !password || !mobile || !state || !district || !address || !pincode) {
+    return res.status(422).json({
+      success: false,
+      message: "Please fill all the fields.",
+      data: {}
+    })
   }
 
   try {
-    const userEmail = await User.findOne({ email: email});
-        const userPhone = await User.findOne({ mobile: mobile});
-        if (userEmail || userPhone) {
-            return res.status(422).json({ error: "Already exists." })
-        } 
+    const userEmail = await User.findOne({ email: email });
+    const userPhone = await User.findOne({ mobile: mobile });
+    if (userEmail || userPhone) {
+      return res.status(422).json({
+        success: false,
+        message: "User already Registered.",
+        data: {}
+      })
+    }
 
 
     const userDoc = await User.create({
@@ -40,6 +45,7 @@ router.post("/register", async (req, res) => {
       district,
       address,
       pincode
+
     });
     res.json({
       success: true,
@@ -55,29 +61,67 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// router.post("/login", async (req, res) => {
-// //   const mongoose = require("mongoose");
-// // const User = require("../models/userSchema");
-// // const bcrypt = require("bcryptjs");
-// // const jwt = require("jsonwebtoken");
-// // const secret = "laundry_cart_SN-10X";
-
-
-//   const { email, mobile, password } = req.body;
-  
-//   if((email && password) || (mobile && password))
-//   try{
-
-//   }
-//   }
-
-
-// module.exports = { loginController };
 
 
 
 
+router.post("/login", async(req, res)=>{
+  const {email, mobile, password } = req.body
 
-// /order/:userId
+  // console.log(req.body.mobile)
+
+  if(!password){
+    res.status(400).json({error: "Please fill proper data."})
+  }else if(!email && !mobile){
+    res.status(400).json({error: "Please fill email or mobile."})
+    
+  }else{
+     console.log(req.body.mobile, req.body.email, req.body.password)
+    try{
+    const userData = await User.findOne({$or:[{'email': req.body.email}, {'mobile': req.body.mobile}]})
+    const givenPass = await bcrypt.compare(password, userData.password)
+
+    // const convert = bcrypt.hashSync(req.body.password, salt)
+    //   console.log(userData.password, givenPass ,convert, req.body.password)
+    // const match = await bcrypt.compare(userData.password, userData.password);
+      
+    if(givenPass){
+      // send name, id
+      res.status(200).json({
+        success: true,
+        message: "Sucessfully login",
+        data: {
+        name: userData.name,
+        id: userData.id
+        }
+      })
+    }else{
+      // update the message
+      res.status(400).json({
+        success: false,
+        message: "Wrong Creadential.",
+        data: {}
+      })
+    }
+    
+    }catch (err){
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        data: {}
+      })
+    }
+  }
+
+
+})
+
 
 module.exports = router;
+
+
+// {
+//   success: Boolean;
+//   message: String;
+//   data: {}
+// }
