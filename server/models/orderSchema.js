@@ -83,4 +83,4 @@ let orderSchema = new schema(
 
 let orders = mongoose.model("order", orderSchema);
 
-module.exports = orders;
+module.exports = orders
