@@ -1,74 +1,121 @@
 .container {
     width: 100%;
-}
-#order-head{
-    display:  flex;
+  }
+  #order-head {
+    display: flex;
     background-color: antiquewhite;
-}
-.head-left{
+  }
+  .head-left {
     color: blue;
-}
-.head-right{
+  }
+  .head-right {
     padding-left: 1100px;
-    
-}
-.items {
+  }
+  .items {
     justify-content: center;
     display: flex;
     width: 80%;
-}
-.items>ul{
+  }
+  .items > ul {
     display: flex;
-     flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: space-between;
-    list-style-type:none;
+    list-style-type: none;
     padding-right: 5px;
     border-bottom: 1px solid rgb(209, 209, 209);
     cursor: pointer;
     padding: 4px;
-}
-
-.items>ul:hover {
+  }
+  
+  .items > ul:hover {
     background-color: #f0f0f0;
-}
-
-.btn-reset{
+  }
+  
+  .btn-reset {
     background-color: rgb(226, 52, 69);
     color: white;
-}
-
-.btn-c{
+  }
+  
+  .btn-c {
     color: white;
     background-color: red;
     margin: 10px;
     min-width: 100px;
     height: 40px;
     font-size: 20px;
-}
-
-.btn-p{
+  }
+  
+  .btn-p {
     color: white;
     background-color: rgba(27, 243, 7, 0.97);
     margin: 10px;
     min-width: 100px;
     height: 40px;
     font-size: 20px;
-}
-.btn{
+  }
+  .btn {
     margin-left: 1200px;
-}
-
-.order{
+  }
+  
+  .order {
     display: flex;
-}
-.total{
+  }
+  .total {
     margin-left: 1200px;
     font-size: 20px;
-
-}
-.lable{
+  }
+  .lable {
     color: blue;
-}
-.product-row{
+  }
+  .wash-type-list {
+      margin-top: 0px !important;
+    list-style-type: none;
+    text-align: end;
+  }
+  .product-row {
     display: flex;
-}
+    padding: 8px;
+    margin: 10px !important;
+    border-radius: 8px;
+  }
+  .text-light {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .secondary-header {
+    font-size: 16px;
+  }
+  .main-header {
+    font-size: 28px;
+  }
+  .sub-header {
+    font-size: 24px;
+  }
+  .order-footer {
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  
+  .product-row .order-product-name {
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  .product-row .order-quantity-input {
+    width: 60px;
+  }
+  .product-row .order-selection-row {
+    margin: 10px 0 24px 0;
+    /* justify-content: center; */
+    display: flex;
+  }
+  
+  .order-selection-row span {
+    margin-top: 4px;
+    margin-right: 4px;
+  }
+  
+  .order-footer-btn {
+    padding-bottom: 32px;
+  }

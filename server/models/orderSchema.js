@@ -57,7 +57,7 @@ let orderSchema = new schema(
           required: true,
         },
         productCost: {
-          type: Number,
+          type: Array,
           required: true,
         },
         totalProductPrice: {

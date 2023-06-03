@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "./UserHead.css";
 
-const NavbarComponent = () => {
+
+
+const UserHeadComponent = () => {
   return (
     <>
       <div className="navcont">
         <div>
-        <span>LAUNDRY</span>
+          <span>LAUNDRY</span>
         </div>
         <div>
           <nav>
             <ul>
               <li>
-                <Link  id="li">Home</Link>
+                <Link id="li">Home</Link>
               </li>
               <li>
                 <Link id="li">Pricing</Link>
@@ -22,7 +24,7 @@ const NavbarComponent = () => {
                 <Link id="li">Career</Link>
               </li>
               <li>
-                <Link id="li">Sign In</Link>
+                <Link id="li">userinfo</Link>
               </li>
             </ul>
           </nav>
@@ -32,4 +34,4 @@ const NavbarComponent = () => {
   );
 };
 
-export default NavbarComponent;
+export default UserHeadComponent ;
