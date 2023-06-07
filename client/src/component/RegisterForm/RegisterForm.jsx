@@ -3,6 +3,9 @@ import "./RegisterForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { City, State } from "country-state-city";
 import { Validation } from "simple-validator-js";
+import { USER_REGISTER_URL } from "../../constants";
+// import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const allStates = State.getStatesOfCountry('IN');
 const stateNames = allStates.map((state) => {
@@ -10,6 +13,7 @@ const stateNames = allStates.map((state) => {
 })
 
 const RegisterFormComponent = () => {
+  // const navigate = useNavigate();
 
   // state and district code
   const [state, setState] = useState("");
@@ -156,6 +160,29 @@ const RegisterFormComponent = () => {
 
   // }
 
+  function handleRegister(e) {
+    e.preventDefault();
+    const url = `${process.env.REACT_APP_API_BASE_URL}${USER_REGISTER_URL}`;
+    axios
+      .post(url, { name, email, password, mobile, state, district, address, pincode})
+      .then((response) => {
+        sessionStorage.setItem("auth", JSON.stringify(response.data.data));
+        alert("Sucessfully Registered")
+        // setError("");
+
+        // navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        // if (error.response) {
+        //   setError(error.response.data.message);
+        // } else {
+        //   setError(error.message);
+        // }
+        alert("Something Went Wrong")
+      });
+  }
+
   return (
     <>
       <div className="registerform">
@@ -267,7 +294,7 @@ const RegisterFormComponent = () => {
               <h5>I agree to terms and conditions, receiving marketing and promotional materials</h5>
             </div>
             <div>
-              <button className={isChecked ? "checked" : "unchecked"}>Register</button>
+              <button className={isChecked ? "checked" : "unchecked"} onClick={handleRegister}>Register</button>
             </div>
           </form>
         </div>
