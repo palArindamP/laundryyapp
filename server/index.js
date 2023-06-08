@@ -7,8 +7,20 @@ const cors = require("cors");
 
 const app = express();
 
+var whitelist = ['http://localhost:3000', 'https://ui1.onrender.com']
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 //parser
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 
